@@ -5,6 +5,8 @@ import com.itheima.pojo.ItemInfo;
 import com.itheima.service.ItemInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /****
  * @Author:shenkunlin
  * @Description:ItemInfo业务层接口实现类
@@ -22,6 +24,7 @@ public class ItemInfoServiceImpl implements ItemInfoService {
      * @param count
      */
     @Override
+    @Transactional(rollbackFor=RuntimeException.class)
     public void decrCount(int id, int count) {
         //查询商品信息
         ItemInfo itemInfo = itemInfoMapper.selectByPrimaryKey(id);

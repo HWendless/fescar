@@ -9,6 +9,7 @@ import com.itheima.service.BusinessService;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -34,7 +35,9 @@ public class BusinessServiceImpl implements BusinessService {
      * @param id
      * @param count
      */
-    @GlobalTransactional(name = "add")
+//    @GlobalTransactional(name = "add")
+    @GlobalTransactional
+    @Transactional(rollbackFor=Exception.class)
     @Override
     public void add(String username, int id, int count) {
         //添加订单日志

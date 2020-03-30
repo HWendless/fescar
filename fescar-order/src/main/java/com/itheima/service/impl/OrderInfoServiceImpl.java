@@ -6,6 +6,8 @@ import com.itheima.pojo.OrderInfo;
 import com.itheima.service.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 /****
  * @Author:shenkunlin
  * @Description:OrderInfo业务层接口实现类
@@ -27,6 +29,7 @@ public class OrderInfoServiceImpl implements OrderInfoService {
      * @param count
      */
     @Override
+    @Transactional(rollbackFor=Exception.class)
     public void add(String username, int id, int count) {
         //添加订单
         OrderInfo orderInfo = new OrderInfo();
